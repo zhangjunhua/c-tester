@@ -873,10 +873,41 @@ void testselfdualsimulation1(){
 
 }
 
+
+std::string bitmap2string(unsigned int a) {
+	std::string s="";
+	for (int i = 31; i >= 0; i--) {
+		if(a & 1<<i){
+			s=s+"1";
+		}else{
+			s=s+"0";
+		}
+		if (i % 4 == 0)
+			s=s+" ";
+	}
+	return s;
+}
+
+
+void outputbitmap(unsigned int a){
+	for(int i=31;i>=0;i--){
+		printf("%d",(a & 1<<i)>>i);
+		if(i%4==0)
+			printf(" ");
+	}
+}
+
+void testoutputbitmap(){
+	unsigned int a=0x78f;
+	outputbitmap(a);
+	printf("\na%sa\n",bitmap2string(a).c_str());
+}
+
 int main() {
 //	testvector();
 //	testsimulation2();
-	testselfdualsimulation1();
+//	testselfdualsimulation1();
+	testoutputbitmap();
 	return 0;
 }
 
